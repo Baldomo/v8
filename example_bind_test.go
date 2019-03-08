@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/Baldomo/v8"
+	"github.com/Baldomo/v8-go"
 )
 
 // AddAllNumbers is the callback function that we'll make accessible the JS VM.

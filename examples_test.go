@@ -3,7 +3,7 @@ package v8_test
 import (
 	"fmt"
 
-	"github.com/Baldomo/v8"
+	"github.com/Baldomo/v8-go"
 )
 
 func Example() {

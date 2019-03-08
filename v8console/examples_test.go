@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Baldomo/v8"
-	"github.com/Baldomo/v8/v8console"
+	"github.com/Baldomo/v8-go"
+	"github.com/Baldomo/v8-go/v8console"
 )
 
 func ExampleFlushSnapshotAndInject() {

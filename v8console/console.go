@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/Baldomo/v8"
+	"github.com/Baldomo/v8-go"
 )
 
 const (

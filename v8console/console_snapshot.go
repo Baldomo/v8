@@ -3,7 +3,7 @@ package v8console
 import (
 	"fmt"
 
-	"github.com/Baldomo/v8"
+	"github.com/Baldomo/v8-go"
 )
 
 const jsConsoleStub = `console = (function() {
