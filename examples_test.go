@@ -3,7 +3,7 @@ package v8_test
 import (
 	"fmt"
 
-	"github.com/augustoroman/v8"
+	"github.com/Baldomo/v8"
 )
 
 func Example() {
