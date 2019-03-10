@@ -1,5 +1,7 @@
 # V8 Bindings for Go [![Build Status](https://travis-ci.org/augustoroman/v8.svg?branch=master)](https://travis-ci.org/augustoroman/v8) [![Go Report Card](https://goreportcard.com/badge/github.com/augustoroman/v8)](https://goreportcard.com/report/github.com/augustoroman/v8) [![GoDoc](https://godoc.org/github.com/augustoroman/v8?status.svg)](https://godoc.org/github.com/augustoroman/v8)
 
+> ⚠️ This is a fork of [augustoroman/v8](https://github.com/augustoroman/v8) which has been made into a 1.11+ module and renamed to play nicely with `go get` (see [#28435](https://github.com/golang/go/issues/28435)). Code has not been modified.
+
 The v8 bindings allow a user to execute javascript from within a go executable.
 
 The bindings are tested to work with several recent v8 builds matching the
@@ -32,13 +34,39 @@ tar -xf libv8.gem
 # Extract the `data.tar.gz` within
 cd libv8-6.3.292.48.1-x86_64-darwin-16
 tar -xzf data.tar.gz
+```
+
+## Install in `/vendor` (recommended)
+Note: this supposes you're using [Go modules](https://github.com/golang/go/wiki/Modules)
+```bash
+# Vendor all dependencies
+go mod vendor
+
+# Try to fetch the module
+# This will fail but it will add the dependency to your go.mod, which is what we're after
+go get github.com/Baldomo/v8-go
+
+# Clone the repo inside the vendor folder
+git clone -j 8 https://github.com/Baldomo/v8-go.git ./vendor/github.com/Baldomo/v8-go
 
 # Symlink the compiled libraries and includes
-ln -s $(pwd)/data/vendor/v8/include $GOPATH/src/github.com/augustoroman/v8/include
-ln -s $(pwd)/data/vendor/v8/out/x64.release $GOPATH/src/github.com/augustoroman/v8/libv8
+ln -s $(pwd)/data/vendor/v8/include ./vendor/github.com/Baldomo/v8-go/include
+ln -s $(pwd)/data/vendor/v8/out/x64.release ./vendor/github.com/Baldomo/v8-go/libv8
 
 # Run the tests to make sure everything works
-cd $GOPATH/src/github.com/augustoroman/v8
+cd ./vendor/github.com/Baldomo/v8-go
+go test
+```
+You can then build your program using `go build -mod=vendor` ([see wiki](https://golang.org/cmd/go/#hdr-Modules_and_vendoring))
+
+## Install in `GOPATH`
+```bash
+# Symlink the compiled libraries and includes
+ln -s $(pwd)/data/vendor/v8/include $GOPATH/src/github.com/Baldomo/v8-go/include
+ln -s $(pwd)/data/vendor/v8/out/x64.release $GOPATH/src/github.com/Baldomo/v8-go/libv8
+
+# Run the tests to make sure everything works
+cd $GOPATH/src/github.com/Baldomo/v8-go
 go test
 ```
 
@@ -94,8 +122,8 @@ You need to build v8 statically and place it in a location cgo knows about. This
 1.  Build the bindings
 
 ```
-go get github.com/augustoroman/v8
-export V8_GO=$GOPATH/src/github.com/augustoroman/v8
+go get github.com/Baldomo/v8-go
+export V8_GO=$GOPATH/src/github.com/Baldomo/v8-go
 export V8_BUILD=$V8_GO/v8/build #or wherever you like
 mkdir -p $V8_BUILD
 cd $V8_BUILD
